@@ -228,8 +228,7 @@ class Player:
         '''Deze functie geeft de vijandige speler terug'''
         if self.ox == 'X':
             return 'O'
-        else:
-            return 'X'
+        return 'X'
 
     def score_board(self, b):
         '''Deze functie geeft een score terug van hoe goed de speler er voor staat
@@ -238,7 +237,7 @@ class Player:
         0 is een verlies'''
         if b.wins_for(self.ox):
             return 100.0
-        elif not b.wins_for(self.opp_ch()) and not b.wins_for(self.ox):
+        if not b.wins_for(self.opp_ch()) and not b.wins_for(self.ox):
             return 50.0
         return 0.0
 

@@ -1,0 +1,11 @@
+De klasse Player is toegevoegd en daarbij zijn er ook 4 verschillende funcies gekomen.
+
+De eerste functie __init__(self, ox, tbt, ply) initialiseerd de Player met een ox (dit is welke speler de speler is dus een O of een X), 
+een tbt (dit geeft de strategie van de speler aan dus vooral links, recht of random spelen),
+en de ply (dit is hoeveel zetten de AI in de toekomst gaat kijken.)
+
+Verder is er een __repr__(self) functie bij gekomen; deze functie zorgt ervoor dat de Player en al zijn stats uitgedrukt kunnen worden.
+
+Ook opp_ch(self) deze functie geeft de vijandige speler terug
+
+En als laatste is score_board(self, b) toegevoegd en deze functie geeft een score aan het hele bord van 100, 50 of 0

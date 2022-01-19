@@ -286,22 +286,3 @@ class Player:
     def next_move(self, b):
         """Geeft de volgende zet terug"""
         return self.tiebreak_move(self.scores_for(b))
-
-
-scoresL = [0, 75, 48, 27, 24, 69, 75]
-p = Player('X', 'RANDOM', 1)
-p2 = Player('X', 'LEFT', 1)
-p3 = Player('X', 'RIGHT', 1)
-assert p2.tiebreak_move(scoresL) == 1
-assert p3.tiebreak_move(scoresL) == 6
-
-bord = Board(7, 6)
-bord.set_board('451122411')
-print(bord)
-assert Player('X', 'LEFT', 1).scores_for(bord) == [50, 50, 50, 100, 50, 50, 50]
-assert Player('O', 'LEFT', 3).scores_for(bord) == [0, 0, 0, 50, 0, 0, 0]
-bord.set_board('16554')
-assert Player('X', 'LEFT', 2).scores_for(
-    bord) == [50, 50, 50, 100, 100, 50, 50]
-assert Player('X', 'LEFT', 4).scores_for(bord) == [
-    100, 100, 100, 100, 100, 100, 100]

@@ -224,16 +224,16 @@ class Player:
         return s
 
     def opp_ch(self):
-        '''Deze functie geeft de vijandige speler terug'''
+        """Deze functie geeft de vijandige speler terug"""
         if self.ox == 'X':
             return 'O'
         return 'X'
 
     def score_board(self, b):
-        '''Deze functie geeft een score terug van hoe goed de speler er voor staat
+        """Deze functie geeft een score terug van hoe goed de speler er voor staat
         100 is een win
         50 is gelijk voor beide speler
-        0 is een verlies'''
+        0 is een verlies"""
         if b.wins_for(self.ox):
             return 100.0
         if not b.wins_for(self.opp_ch()) and not b.wins_for(self.ox):
@@ -255,9 +255,9 @@ class Player:
         return random.choice(max_indices)
 
     def scores_for(self, b):
-        '''Neemt een bord en kijkt naar wat de beste zet zal zijn voor een speler
+        """Neemt een bord en kijkt naar wat de beste zet zal zijn voor een speler
         met de regels die al gedetermineerd waren voor de speler.
-        '''
+        """
         scores = [50] * b.width
 
         for col in range(b.width):
@@ -274,14 +274,19 @@ class Player:
                 other_player = Player(
                     self.opp_ch(), self.tbt, self.ply-1)
                 other_scores = other_player.scores_for(b)
-                if max(other_scores) == 0:
-                    scores[col] = 100
-                elif max(other_scores) == 100:
-                    scores[col] = 0
-                elif max(other_scores) == 50:
-                    scores[col] = 50
+                if max(other_scores) == 0.0:
+                    scores[col] = 100.0
+                elif max(other_scores) == 100.0:
+                    scores[col] = 0.0
+                elif max(other_scores) == 50.0:
+                    scores[col] = 50.0
                 b.del_move(col)
         return scores
+
+    def next_move(self, b):
+        """ Geeft de volgende zet terug
+        """
+        return self.tiebreak_move(self.scores_for(b))
 
 
 scoresL = [0, 75, 48, 27, 24, 69, 75]

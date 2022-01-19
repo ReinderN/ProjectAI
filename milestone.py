@@ -243,7 +243,7 @@ class Player:
         """
         max_indices = []
         ms = max(scores)
-        for i in range(len(scores)):
+        for i, x in enumerate(scores):
             if scores[i] == ms:
                 max_indices.append(i)
 

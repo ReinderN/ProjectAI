@@ -1,32 +1,5 @@
 import random
 
-def shuffle(L):
-    """Returns the first highest number his index of the List
-    """
-    enumeratedL = []
-    randomL = []
-
-    index = 0
-    for x in L:
-        enumeratedL += [[index, x]]
-        index += 1
-    
-    for x in enumeratedL:
-        rI = random.choice([0,1])
-        if rI == 0:
-            randomL.append(x)
-        else:
-            randomL.insert(0, x)
-    
-    highNumber = 0
-    highIndex = 0
-
-    for y, x in randomL:
-        if x > highNumber:
-            highNumber = x
-            highIndex = y
-    return highIndex
-
 class Board:
     """A data type representing a Connect-4 board
        with an arbitrary number of rows and columns.
@@ -266,23 +239,21 @@ class Player:
         return 0.0
 
     def tiebreak_move(self, scores):
-        """Deze functie geeft de kolom terug die de hoogste score heeft met de keuze strategie van de player.
-         """
-        Lscores = len(scores)
-        if self.tbt == 'RANDOM':
-            return shuffle(scores)
-        if self.tbt == 'RIGHT':
-            Escores = enumerate(scores[::-1])
+        """Chooses a column for a move during a tiebreaker, using the chosen direction given by the player
+        """
+        max_indices = []
+        ms = max(scores)
+        for i in range(len(scores)):
+            if scores[i] == ms:
+                max_indices.append(i)
+            
+        if self.tbt == "RIGHT":
+            return max_indices[-1]
+        elif self.tbt == "LEFT":
+            return max_indices[0]
         else:
-            Escores = enumerate(scores)
-        highest = 0
-        index = 0
-        for i, x in Escores:
-            if x > highest:
-                highest = x
-                index = i
-        return index if self.tbt == 'LEFT' else Lscores-1-index
-
+            return random.choice(max_indices)
+            
 scores = [0, 75, 48, 27, 24, 69, 75]
 p = Player('X', 'RANDOM', 1)
 p2 = Player('X', 'LEFT', 1)

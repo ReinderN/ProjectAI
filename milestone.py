@@ -253,6 +253,7 @@ class Player:
             return max_indices[0]
         return random.choice(max_indices)
 
+
 scoresL = [0, 75, 48, 27, 24, 69, 75]
 p = Player('X', 'RANDOM', 1)
 p2 = Player('X', 'LEFT', 1)

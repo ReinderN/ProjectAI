@@ -284,8 +284,7 @@ class Player:
         return scores
 
     def next_move(self, b):
-        """ Geeft de volgende zet terug
-        """
+        """Geeft de volgende zet terug"""
         return self.tiebreak_move(self.scores_for(b))
 
 

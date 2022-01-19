@@ -1,0 +1,8 @@
+In deze update is de Player klasse uitgebreid met 2 nieuwe functies, namelijk:
+
+tiebreak_move(self, scores) Waarin je scores mee moet geven wat een lijst 
+is met  scores en dan baseert het de output op je keuze strategie self.tbt.
+
+& scores_for(self, b) Met deze functie krijg je de scores in een lijst met een bepaalde diepte namelijk self.ply.
+De lijst geeft een rij aan getallen terug waarin -1.0 een niet mogelijke move is, 50.0 een matige move is
+100.0 een winnende zet en 0.0 een verliezende zet is.

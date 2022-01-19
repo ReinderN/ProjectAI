@@ -244,7 +244,7 @@ class Player:
         max_indices = []
         ms = max(scores)
         for i, x in enumerate(scores):
-            if scores[i] == ms:
+            if x == ms:
                 max_indices.append(i)
 
         if self.tbt == "RIGHT":

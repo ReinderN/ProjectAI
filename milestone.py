@@ -253,6 +253,69 @@ class Player:
             return max_indices[0]
         return random.choice(max_indices)
 
+    def scores_for(self, board):
+        ''' takes a Board and determines the called AIPlayer's
+        scores for the columns in board
+        '''
+        scores = [50] * board.width  # 50*board,width
+
+        for col in range(board.width):
+            if not board.allows_move(col):
+                scores[col] = -1
+            elif board.wins_for(self.ox):
+                scores[col] = 100
+            elif board.wins_for(self.opp_ch()):
+                scores[col] = 0
+            elif self.ply == 0:
+                scores[col] = 50
+            else:
+                board.add_move(col, self.ox)
+                other_player = Player(
+                    self.opp_ch(), self.tbt, self.ply-1)
+                other_scores = other_player.scores_for(board)
+                if max(other_scores) == 0:
+                    scores[col] = 100
+                elif max(other_scores) == 100:
+                    scores[col] = 0
+                elif max(other_scores) == 50:
+                    scores[col] = 50
+
+                board.del_move(col)
+        return scores
+
+
+b = Board(7, 6)
+b.set_board('1211244445')
+print(b)
+
+# 0-ply lookahead ziet geen bedreigingen
+assert Player('X', 'LEFT', 0).scores_for(b) == [
+    50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0]
+
+# 1-play lookahead ziet een manier om te winnen
+# (als het de beurt van 'O' was!)
+assert Player('O', 'LEFT', 1).scores_for(b) == [
+    50.0, 50.0, 50.0, 100.0, 50.0, 50.0, 50.0]
+
+# 2-ply lookahead ziet manieren om te verliezen
+# ('X' kan maar beter in kolom 3 spelen...)
+assert Player('X', 'LEFT', 2).scores_for(b) == [
+    0.0, 0.0, 0.0, 50.0, 0.0, 0.0, 0.0]
+
+# 3-ply lookahead ziet indirecte overwinningen
+# ('X' ziet dat kolom 3 een overwinning oplevert!)
+assert Player('X', 'LEFT', 3).scores_for(b) == [
+    0.0, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0]
+
+# Bij 3-ply ziet 'O' nog geen gevaar
+# als hij in een andere kolom speelt
+assert Player('O', 'LEFT', 3).scores_for(b) == [
+    50.0, 50.0, 50.0, 100.0, 50.0, 50.0, 50.0]
+
+# Maar bij 4-ply ziet 'O' wel het gevaar!
+# weer jammer dat het niet de beurt van 'O' is...
+assert Player('O', 'LEFT', 4).scores_for(b) == [
+    0.0, 0.0, 0.0, 100.0, 0.0, 0.0, 0.0]
 
 scoresL = [0, 75, 48, 27, 24, 69, 75]
 p = Player('X', 'RANDOM', 1)

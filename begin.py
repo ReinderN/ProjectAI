@@ -250,11 +250,11 @@ bord.set_board('01210131')
 p = Player('O', 'LEFT', 1)
 p2 = Player('X', 'RIGHT', 1)
 
-assert p.score_board(b) == 100.0
-assert p2.score_board(b) == 0.0
+assert p.score_board(bord) == 100.0
+assert p2.score_board(bord) == 0.0
 
 bord.clear()
 bord.set_board('0120131')
 
-assert p.score_board(b) == 50.0
-assert p2.score_board(b) == 50.0
+assert p.score_board(bord) == 50.0
+assert p2.score_board(bord) == 50.0

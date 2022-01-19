@@ -237,6 +237,8 @@ class Player:
         return 0.0
 
     def tiebreak_move(self, scores):
+        """Deze functie geeft de kolom terug die de hoogste score heeft met de keuze strategie van de player.
+        """
         if self.tbt == 'LEFT':
             pass
         elif self.tbt == 'RIGHT':

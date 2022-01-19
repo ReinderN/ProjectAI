@@ -254,9 +254,9 @@ class Player:
         else:
             return random.choice(max_indices)
 
-scores = [0, 75, 48, 27, 24, 69, 75]
+scoresL = [0, 75, 48, 27, 24, 69, 75]
 p = Player('X', 'RANDOM', 1)
 p2 = Player('X', 'LEFT', 1)
 p3 = Player('X', 'RIGHT', 1)
-assert p2.tiebreak_move(scores) == 1
-assert p3.tiebreak_move(scores) == 6
+assert p2.tiebreak_move(scoresL) == 1
+assert p3.tiebreak_move(scoresL) == 6

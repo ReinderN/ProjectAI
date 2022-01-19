@@ -221,9 +221,7 @@ class Player:
 
     def opp_ch(self):
         '''Deze functie geeft de vijandige speler terug'''
-        if self.ox == 'X':
-            return 'O'
-        return 'X'
+        return 'X' if self.ox == 'O' else 'O'
 
     def score_board(self, b):
         '''Deze functie geeft een score terug van hoe goed de speler er voor staat

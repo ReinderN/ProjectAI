@@ -1,5 +1,3 @@
-
-
 class Board:
     """A data type representing a Connect-4 board
        with an arbitrary number of rows and columns.

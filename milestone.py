@@ -283,11 +283,6 @@ class Player:
                 b.del_move(col)
         return scores
 
-    def next_move(self, b):
-        """ Geeft de volgende zet terug
-        """
-        return self.tiebreak_move(self.scores_for(b))
-
 
 scoresL = [0, 75, 48, 27, 24, 69, 75]
 p = Player('X', 'RANDOM', 1)

@@ -72,10 +72,7 @@ class Board:
 
     def is_full(self):
         """Checks whether the board is full"""
-        for col in range(self.width):
-            if self.allows_move(col):
-                return False
-        return True
+        return all(not self.allows_move(col) for col in range(self.width))
 
     def del_move(self, col):
         """Removes a stone from column col"""

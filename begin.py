@@ -105,7 +105,7 @@ class Board:
             if self.wins_for(ox):
                 print(ox, 'heeft gewonnen!')
                 break
-            elif self.is_full():
+            if self.is_full():
                 print('Gelijkspel!')
                 break
 
@@ -137,7 +137,7 @@ class Board:
             if self.wins_for(ox):
                 print(f'{ox} heeft gewonnen!')
                 break
-            elif self.is_full():
+            if self.is_full():
                 print('Gelijkspel!')
                 break
 

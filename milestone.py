@@ -1,6 +1,4 @@
 
-from copy import deepcopy
-import enum
 
 
 class Board:

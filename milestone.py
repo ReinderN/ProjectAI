@@ -241,7 +241,7 @@ class Player:
 
     def tiebreak_move(self, scores):
         if self.tbt == 'LEFT':
-            scores = scores
+            pass
         elif self.tbt == 'RIGHT':
             scores = scores[::-1]
         highest = 0

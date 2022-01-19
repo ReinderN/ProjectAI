@@ -245,16 +245,16 @@ assert p.opp_ch() == 'X'
 assert p2.opp_ch() == 'O'
 
 # asserts voor score_board(self, scores)
-b = Board(7, 6)
-b.set_board('01210131')
+bord = Board(7, 6)
+bord.set_board('01210131')
 p = Player('O', 'LEFT', 1)
 p2 = Player('X', 'RIGHT', 1)
 
 assert p.score_board(b) == 100.0
 assert p2.score_board(b) == 0.0
 
-b.clear()
-b.set_board('0120131')
+bord.clear()
+bord.set_board('0120131')
 
 assert p.score_board(b) == 50.0
 assert p2.score_board(b) == 50.0

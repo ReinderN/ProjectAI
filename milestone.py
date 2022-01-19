@@ -249,10 +249,9 @@ class Player:
 
         if self.tbt == "RIGHT":
             return max_indices[-1]
-        elif self.tbt == "LEFT":
+        if self.tbt == "LEFT":
             return max_indices[0]
-        else:
-            return random.choice(max_indices)
+        return random.choice(max_indices)
 
 scoresL = [0, 75, 48, 27, 24, 69, 75]
 p = Player('X', 'RANDOM', 1)

@@ -1,3 +1,6 @@
+import random
+
+
 class Board:
     """A data type representing a Connect-4 board
        with an arbitrary number of rows and columns.
@@ -238,15 +241,24 @@ class Player:
 
     def tiebreak_move(self, scores):
         """Deze functie geeft de kolom terug die de hoogste score heeft met de keuze strategie van de player.
-        """
-        if self.tbt == 'LEFT':
-            pass
+         """
+        if self.tbt == 'RANDOM':
+            Escores = random.shuffle(enumerate(scores))
         elif self.tbt == 'RIGHT':
-            scores = scores[::-1]
+            Escores = enumerate(scores[::-1])
+        else:
+            Escores = enumerate(scores)
         highest = 0
         index = 0
-        for i, x in enumerate(scores):
+        for i, x in Escores:
             if x > highest:
                 highest = x
                 index = i
         return index if self.tbt == 'LEFT' else len(scores)-1-index
+
+
+scores = [0, 0, 50, 0, 50, 50, 0]
+p = Player('X', 'LEFT', 1)
+p2 = Player('X', 'RIGHT', 1)
+assert p.tiebreak_move(scores) == 2
+assert p2.tiebreak_move(scores) == 5

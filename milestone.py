@@ -10,6 +10,7 @@ def in_a_row_n_east(ch, r_start, c_start, a, n):
             return False
     return True
 
+
 def in_a_row_n_south(ch, r_start, c_start, a, n):
     """Checks whether ch has n in a row starting at r_start, c_start going south"""
     if r_start < 0 or r_start >= len(a) - n+1 or c_start < 0 or c_start >= len(a[0]):
@@ -19,6 +20,7 @@ def in_a_row_n_south(ch, r_start, c_start, a, n):
             return False
     return True
 
+
 def in_a_row_n_southeast(ch, r_start, c_start, a, n):
     """Checks whether ch has n in a row starting at r_start, c_start going southeast"""
     if r_start < 0 or r_start >= len(a) - n+1 or c_start < 0 or c_start >= len(a[0]) - n+1:
@@ -27,6 +29,7 @@ def in_a_row_n_southeast(ch, r_start, c_start, a, n):
         if a[r_start+i][c_start+i] != ch:
             return False
     return True
+
 
 def in_a_row_n_northeast(ch, r_start, c_start, a, n):
     """Checks whether ch has n in a row starting at r_start, c_start going northeast"""
@@ -237,8 +240,7 @@ class Player:
         return 0.0
 
     def tiebreak_move(self, scores):
-        """Chooses a column for a move during a tiebreaker, using the chosen direction given by the player
-        """
+        """Chooses a column for a move during a tiebreaker, using the chosen direction given by the player"""
         max_indices = []
         ms = max(scores)
         for i, x in enumerate(scores):

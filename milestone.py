@@ -246,14 +246,14 @@ class Player:
         for i in range(len(scores)):
             if scores[i] == ms:
                 max_indices.append(i)
-            
+
         if self.tbt == "RIGHT":
             return max_indices[-1]
         elif self.tbt == "LEFT":
             return max_indices[0]
         else:
             return random.choice(max_indices)
-            
+
 scores = [0, 75, 48, 27, 24, 69, 75]
 p = Player('X', 'RANDOM', 1)
 p2 = Player('X', 'LEFT', 1)

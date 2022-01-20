@@ -1,0 +1,1 @@
+In deze update is de Player klasse uitgebreid met ... nieuwe functies, namelijk:

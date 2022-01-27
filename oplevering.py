@@ -1,9 +1,6 @@
 import time
 import random
 import hashlib
-import turtle
-
-from numpy import diff
 
 
 def in_a_row_n_east(ch, r_start, c_start, a, n):
@@ -271,7 +268,7 @@ class Player:
         """
         LString = str(b.data)
 
-        x = hashlib.md5((LString + self.ox).encode('utf-8')).digest()
+        x = hashlib.md5((LString + self.ox + str(self.ply)).encode('utf-8')).digest()
 
         if x in hash_dict:
             # print(hash_dict[x])
@@ -293,12 +290,12 @@ class Player:
                 other_player = Player(
                     self.opp_ch(), self.tbt, self.ply-1)
                 other_scores = other_player.scores_for(b)
-                if max(other_scores) == 0.0:
-                    scores[col] = 100.0
-                elif max(other_scores) == 100.0:
-                    scores[col] = 0.0
-                elif max(other_scores) == 50.0:
-                    scores[col] = 50.0
+                if max(other_scores) == 0:
+                    scores[col] = 100
+                elif max(other_scores) == 100:
+                    scores[col] = 0
+                elif max(other_scores) == 50:
+                    scores[col] = 50
                 b.del_move(col)
 
         hash_dict[x] = scores
@@ -322,8 +319,8 @@ class bcolors:
 
 
 hash_dict = {}
-p1 = Player('X', 'RANDOM', 6)
-p2 = Player('O', 'RANDOM', 6)
+p1 = Player('X', 'LEFT', 4)
+p2 = Player('O', 'RIGHT', 4)
 
 bord = Board(7, 6)
 

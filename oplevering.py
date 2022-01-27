@@ -1,4 +1,9 @@
+import time
 import random
+import hashlib
+import turtle
+
+from numpy import diff
 
 
 def in_a_row_n_east(ch, r_start, c_start, a, n):
@@ -62,7 +67,13 @@ class Board:
         for row in range(0, self.height):
             s += '|'
             for col in range(0, self.width):
-                s += self.data[row][col] + '|'
+                text = self.data[row][col]
+                if text == 'X':
+                    text = bcolors.OKGREEN + text + bcolors.ENDC + '|'
+                else:
+                    text = bcolors.OKBLUE + text + bcolors.ENDC + '|'
+
+                s += text
             s += '\n'
 
         s += (2*self.width + 1) * '-'   # onderkant van het bord
@@ -173,9 +184,11 @@ class Board:
 
             # controleer of het spel afgelopen is
             if self.wins_for(ox):
+                # print(self)
                 print(f'{ox} heeft gewonnen!')
                 break
             if self.is_full():
+                # print(self)
                 print('Gelijkspel!')
                 break
 
@@ -256,15 +269,23 @@ class Player:
         """Neemt een bord en kijkt naar wat de beste zet zal zijn voor een speler
         met de regels die al gedetermineerd waren voor de speler.
         """
+        LString = str(b.data)
+
+        x = hashlib.md5((LString + self.ox).encode('utf-8')).digest()
+
+        if x in hash_dict:
+            # print(hash_dict[x])
+            return hash_dict[x]
+
         scores = [50] * b.width
 
         for col in range(b.width):
             if not b.allows_move(col):
                 scores[col] = -1
-            elif b.wins_for(self.ox):
-                scores[col] = 100
             elif b.wins_for(self.opp_ch()):
                 scores[col] = 0
+            elif b.wins_for(self.ox):
+                scores[col] = 100
             elif self.ply == 0:
                 scores[col] = 50
             else:
@@ -279,8 +300,31 @@ class Player:
                 elif max(other_scores) == 50.0:
                     scores[col] = 50.0
                 b.del_move(col)
+
+        hash_dict[x] = scores
         return scores
 
     def next_move(self, b):
         """Geeft de volgende zet terug"""
         return self.tiebreak_move(self.scores_for(b))
+
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
+hash_dict = {}
+p1 = Player('X', 'RANDOM', 6)
+p2 = Player('O', 'RANDOM', 6)
+
+bord = Board(7, 6)
+
+bord.play_game(p1, p2, True)

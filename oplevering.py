@@ -104,7 +104,6 @@ class Board:
         see them alternate in the left column.
         move_string must be a string of one-digit integers.
         """
-
         next_checker = 'X'  # we starten door een 'X' te spelen
         for col_char in move_string:
             col = int(col_char)
@@ -309,6 +308,7 @@ class Player:
 
 
 class bcolors:
+    """Gives characters colour when used correctly"""
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
     OKCYAN = '\033[96m'

@@ -44,9 +44,8 @@ def in_a_row_n_northeast(ch, r_start, c_start, a, n):
 
 
 class Board:
-    """A data type representing a Connect-4 board
-       with an arbitrary number of rows and columns.
-    """
+    """A data type representing a Connect-4 board 
+    with an arbitrary number of rows and columns."""
 
     def __init__(self, width, height):
         """Construct objects of type Board, with the given width and height."""
@@ -57,9 +56,7 @@ class Board:
         # We hoeven niets terug te geven vanuit een constructor!
 
     def __repr__(self):
-        """This method returns a string representation
-           for an object of type Board.
-        """
+        """This method returns a string representation for an object of type Board."""
         s = ''                          # de string om terug te geven
         for row in range(0, self.height):
             s += '|'
@@ -96,15 +93,13 @@ class Board:
     def set_board(self, move_string):
         """Accepts a string of columns and places
            alternating checkers in those columns,
-           starting with 'X'.
-
+           starting with 'X'.   
            For example, call b.set_board('012345')
            to see 'X's and 'O's alternate on the
            bottom row, or b.set_board('000000') to
-           see them alternate in the left column.
+           see them alternate in the left column.   
+           move_string must be a string of one-digit integers."""
 
-           move_string must be a string of one-digit integers.
-        """
         next_checker = 'X'  # we starten door een 'X' te spelen
         for col_char in move_string:
             col = int(col_char)
@@ -219,8 +214,7 @@ class Player:
     """An AI player for Connect Four."""
 
     def __init__(self, ox, tbt, ply):
-        """Construct a player for a given checker, tie-breaking type,
-            and ply."""
+        """Construct a player for a given checker, tie-breaking type, and ply."""
         self.ox = ox
         self.tbt = tbt
         self.ply = ply
@@ -268,7 +262,8 @@ class Player:
         """
         LString = str(b.data)
 
-        x = hashlib.md5((LString + self.ox + str(self.ply)).encode('utf-8')).digest()
+        x = hashlib.md5((LString + self.ox + str(self.ply)
+                         ).encode('utf-8')).digest()
 
         if x in hash_dict:
             # print(hash_dict[x])
@@ -279,10 +274,10 @@ class Player:
         for col in range(b.width):
             if not b.allows_move(col):
                 scores[col] = -1
-            elif b.wins_for(self.opp_ch()):
-                scores[col] = 0
             elif b.wins_for(self.ox):
                 scores[col] = 100
+            elif b.wins_for(self.opp_ch()):
+                scores[col] = 0
             elif self.ply == 0:
                 scores[col] = 50
             else:
@@ -319,8 +314,8 @@ class bcolors:
 
 
 hash_dict = {}
-p1 = Player('X', 'LEFT', 4)
-p2 = Player('O', 'RIGHT', 4)
+p1 = Player('X', 'RANDOM', 4)
+p2 = Player('O', 'RANDOM', 4)
 
 bord = Board(7, 6)
 

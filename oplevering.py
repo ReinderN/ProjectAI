@@ -181,11 +181,9 @@ class Board:
 
             # controleer of het spel afgelopen is
             if self.wins_for(ox):
-                # print(self)
                 print(f'{ox} heeft gewonnen!')
                 break
             if self.is_full():
-                # print(self)
                 print('Gelijkspel!')
                 break
 
@@ -271,7 +269,6 @@ class Player:
         x = hashlib.md5((LString + self.ox + str(self.ply)).encode('utf-8')).digest()
 
         if x in hash_dict:
-            # print(hash_dict[x])
             return hash_dict[x]
 
         scores = [50] * b.width

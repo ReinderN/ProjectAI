@@ -44,7 +44,8 @@ def in_a_row_n_northeast(ch, r_start, c_start, a, n):
 
 class Board:
     """A data type representing a Connect-4 board 
-    with an arbitrary number of rows and columns."""
+    with an arbitrary number of rows and columns.
+    """
 
     def __init__(self, width, height):
         """Construct objects of type Board, with the given width and height."""
@@ -91,13 +92,14 @@ class Board:
 
     def set_board(self, move_string):
         """Accepts a string of columns and places
-           alternating checkers in those columns,
-           starting with 'X'.   
-           For example, call b.set_board('012345')
-           to see 'X's and 'O's alternate on the
-           bottom row, or b.set_board('000000') to
-           see them alternate in the left column.   
-           move_string must be a string of one-digit integers."""
+        alternating checkers in those columns,
+        starting with 'X'.   
+        For example, call b.set_board('012345')
+        to see 'X's and 'O's alternate on the
+        bottom row, or b.set_board('000000') to
+        see them alternate in the left column.   
+        move_string must be a string of one-digit integers.
+        """
 
         next_checker = 'X'  # we starten door een 'X' te spelen
         for col_char in move_string:
@@ -232,7 +234,8 @@ class Player:
         """Deze functie geeft een score terug van hoe goed de speler er voor staat
         100 is een win
         50 is gelijk voor beide speler
-        0 is een verlies"""
+        0 is een verlies
+        """
         if b.wins_for(self.ox):
             return 100.0
         if not b.wins_for(self.opp_ch()) and not b.wins_for(self.ox):
@@ -240,7 +243,9 @@ class Player:
         return 0.0
 
     def tiebreak_move(self, scores):
-        """Chooses a column for a move during a tiebreaker, using the chosen direction given by the player"""
+        """Chooses a column for a move during a tiebreaker, 
+        using the chosen direction given by the player.
+        """
         max_indices = []
         ms = max(scores)
         for i, x in enumerate(scores):

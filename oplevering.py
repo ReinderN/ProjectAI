@@ -43,7 +43,7 @@ def in_a_row_n_northeast(ch, r_start, c_start, a, n):
 
 
 class Board:
-    """A data type representing a Connect-4 board 
+    """A data type representing a Connect-4 board
     with an arbitrary number of rows and columns.
     """
 
@@ -93,11 +93,11 @@ class Board:
     def set_board(self, move_string):
         """Accepts a string of columns and places
         alternating checkers in those columns,
-        starting with 'X'.   
+        starting with 'X'. 
         For example, call b.set_board('012345')
         to see 'X's and 'O's alternate on the
         bottom row, or b.set_board('000000') to
-        see them alternate in the left column.   
+        see them alternate in the left column.
         move_string must be a string of one-digit integers.
         """
 
@@ -243,7 +243,7 @@ class Player:
         return 0.0
 
     def tiebreak_move(self, scores):
-        """Chooses a column for a move during a tiebreaker, 
+        """Chooses a column for a move during a tiebreaker,
         using the chosen direction given by the player.
         """
         max_indices = []

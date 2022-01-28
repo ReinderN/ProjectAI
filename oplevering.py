@@ -135,8 +135,10 @@ class Board:
         """Checks whether player ox wins the game"""
         for y in range(self.height):
             for x in range(self.width):
-                if in_a_row_n_east(ox, y, x, self.data, 4) or in_a_row_n_south(ox, y, x, self.data, 4) or \
-                        in_a_row_n_southeast(ox, y, x, self.data, 4) or in_a_row_n_northeast(ox, y, x, self.data, 4):
+                if in_a_row_n_east(ox, y, x, self.data, 4) or \
+                        in_a_row_n_south(ox, y, x, self.data, 4) or \
+                        in_a_row_n_southeast(ox, y, x, self.data, 4) or \
+                        in_a_row_n_northeast(ox, y, x, self.data, 4):
                     return True
         return False
 

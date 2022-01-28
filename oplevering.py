@@ -4,7 +4,8 @@ import hashlib
 
 def in_a_row_n_east(ch, r_start, c_start, a, n):
     """Checks whether ch has n in a row starting at r_start, c_start going east"""
-    if r_start < 0 or r_start >= len(a) or c_start < 0 or c_start >= len(a[0]) - n+1:
+    if r_start < 0 or r_start >= len(a) or \
+            c_start < 0 or c_start >= len(a[0]) - n+1:
         return False
     for i in range(0, n):
         if a[r_start][c_start+i] != ch:
@@ -14,7 +15,8 @@ def in_a_row_n_east(ch, r_start, c_start, a, n):
 
 def in_a_row_n_south(ch, r_start, c_start, a, n):
     """Checks whether ch has n in a row starting at r_start, c_start going south"""
-    if r_start < 0 or r_start >= len(a) - n+1 or c_start < 0 or c_start >= len(a[0]):
+    if r_start < 0 or r_start >= len(a) - n+1 or \
+            c_start < 0 or c_start >= len(a[0]):
         return False
     for i in range(0, n):
         if a[r_start+i][c_start] != ch:
@@ -24,7 +26,8 @@ def in_a_row_n_south(ch, r_start, c_start, a, n):
 
 def in_a_row_n_southeast(ch, r_start, c_start, a, n):
     """Checks whether ch has n in a row starting at r_start, c_start going southeast"""
-    if r_start < 0 or r_start >= len(a) - n+1 or c_start < 0 or c_start >= len(a[0]) - n+1:
+    if r_start < 0 or r_start >= len(a) - n+1 or \
+            c_start < 0 or c_start >= len(a[0]) - n+1:
         return False
     for i in range(0, n):
         if a[r_start+i][c_start+i] != ch:
@@ -34,7 +37,8 @@ def in_a_row_n_southeast(ch, r_start, c_start, a, n):
 
 def in_a_row_n_northeast(ch, r_start, c_start, a, n):
     """Checks whether ch has n in a row starting at r_start, c_start going northeast"""
-    if r_start < n-1 or r_start >= len(a) or c_start < 0 or c_start >= len(a[0]) - n+1:
+    if r_start < n-1 or r_start >= len(a) or \
+            c_start < 0 or c_start >= len(a[0]) - n+1:
         return False
     for i in range(0, n):
         if a[r_start-i][c_start+i] != ch:
@@ -93,7 +97,7 @@ class Board:
     def set_board(self, move_string):
         """Accepts a string of columns and places
         alternating checkers in those columns,
-        starting with 'X'. 
+        starting with 'X'.
         For example, call b.set_board('012345')
         to see 'X's and 'O's alternate on the
         bottom row, or b.set_board('000000') to

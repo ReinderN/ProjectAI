@@ -170,6 +170,15 @@ class Board:
             # voer de zet uit
             self.add_move(col, ox)
 
+    def tetris(self):
+        count = 0
+        for item in self.data[self.height-1]:
+            if item in ['X', 'O']:
+                count += 1
+
+        if count == self.width:
+            self.data = [[' ']*self.width] + self.data[0:self.height-1]
+
     def play_game(self, px, po, show_scores=False):
         """
         Plays a game of Connect Four between players px and po.
@@ -328,4 +337,4 @@ p2 = Player('O', 'RANDOM', 4)
 
 bord = Board(7, 6)
 
-bord.play_game(p1, p2, True)
+bord.play_game(p1, p2)

@@ -5,6 +5,7 @@ import colorama
 
 
 def tetrisPrint():
+    """Prints an animated text that spells Tetris!, in the colors of the games logo"""
     print(colorama.Fore.RED + 'T', end='\r')
     time.sleep(.2)
     print(colorama.Fore.GREEN + 'Te', end='\r')
@@ -190,6 +191,7 @@ class Board:
             self.add_move(col, ox)
 
     def tetris(self):
+        """Checks if there is a full row on the board, clears it and adds a new clean row on the top."""
         if self.alt:
             count = 0
             for item in self.data[self.height-1]:
@@ -345,7 +347,9 @@ p1 = Player('X', 'RANDOM', 4)
 p2 = Player('O', 'RANDOM', 4)
 
 state = input(
-    'Wil je tegen een AI spelen of tegen een persoon? \nDe default waarde bij niks invullen is AIvAI \n[AI/Persoon/AIvAI]==>')
+    'Wil je tegen een AI spelen of tegen een persoon? \
+    \nDe default waarde bij niks invullen is AIvAI \
+    \n[AI/Persoon/AIvAI]==>')
 alt = input('Wil je het in tetris modes spelen? \n[Ja/Nee]==>')
 
 bord = Board(7, 6)

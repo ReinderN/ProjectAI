@@ -191,7 +191,8 @@ class Board:
             self.add_move(col, ox)
 
     def tetris(self):
-        """Checks if there is a full row on the board, clears it and adds a new clean row on the top."""
+        """Checks if there is a full row on the board, 
+        clears it and adds a new clean row on the top."""
         if self.alt:
             count = 0
             for item in self.data[self.height-1]:

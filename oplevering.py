@@ -1,5 +1,23 @@
 import random
 import hashlib
+import time
+import colorama
+
+
+def tetrisPrint():
+    print(colorama.Fore.RED + 'T', end='\r')
+    time.sleep(.2)
+    print(colorama.Fore.GREEN + 'Te', end='\r')
+    time.sleep(.2)
+    print(colorama.Fore.LIGHTRED_EX + 'Tet', end='\r')
+    time.sleep(.2)
+    print(colorama.Fore.MAGENTA + 'Tetr', end='\r')
+    time.sleep(.2)
+    print(colorama.Fore.CYAN + 'Tetri', end='\r')
+    time.sleep(.2)
+    print(colorama.Fore.YELLOW + 'Tetris', end='\r')
+    time.sleep(.2)
+    print(colorama.Fore.WHITE + 'Tetris!', end='\r')
 
 
 def in_a_row_n_east(ch, r_start, c_start, a, n):
@@ -51,10 +69,11 @@ class Board:
     with an arbitrary number of rows and columns.
     """
 
-    def __init__(self, width, height):
+    def __init__(self, width, height, alternatief=False):
         """Construct objects of type Board, with the given width and height."""
         self.width = width
         self.height = height
+        self.alt = alternatief
         self.data = [[' ']*width for row in range(height)]
 
         # We hoeven niets terug te geven vanuit een constructor!
@@ -67,9 +86,9 @@ class Board:
             for col in range(0, self.width):
                 text = self.data[row][col]
                 if text == 'X':
-                    text = bcolors.OKGREEN + text + bcolors.ENDC + '|'
+                    text = colorama.Fore.RED + text + colorama.Fore.RESET + '|'
                 else:
-                    text = bcolors.OKBLUE + text + bcolors.ENDC + '|'
+                    text = colorama.Fore.YELLOW + text + colorama.Fore.RESET + '|'
 
                 s += text
             s += '\n'
@@ -171,13 +190,15 @@ class Board:
             self.add_move(col, ox)
 
     def tetris(self):
-        count = 0
-        for item in self.data[self.height-1]:
-            if item in ['X', 'O']:
-                count += 1
+        if self.alt:
+            count = 0
+            for item in self.data[self.height-1]:
+                if item != ' ':
+                    count += 1
 
-        if count == self.width:
-            self.data = [[' ']*self.width] + self.data[0:self.height-1]
+            if count == self.width:
+                tetrisPrint()
+                self.data = [[' ']*self.width] + self.data[0:self.height-1]
 
     def play_game(self, px, po, show_scores=False):
         """
@@ -196,6 +217,8 @@ class Board:
             if self.is_full():
                 print('Gelijkspel!')
                 break
+
+            self.tetris()
 
             # verander de huidige speler
             if ox == 'O':
@@ -315,20 +338,6 @@ class Player:
     def next_move(self, b):
         """Geeft de volgende zet terug"""
         return self.tiebreak_move(self.scores_for(b))
-
-
-class bcolors:
-    """Gives characters colour when used correctly"""
-
-    HEADER = '\033[95m'
-    OKBLUE = '\033[94m'
-    OKCYAN = '\033[96m'
-    OKGREEN = '\033[92m'
-    WARNING = '\033[93m'
-    FAIL = '\033[91m'
-    ENDC = '\033[0m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
 
 
 hash_dict = {}

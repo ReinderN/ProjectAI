@@ -344,6 +344,18 @@ hash_dict = {}
 p1 = Player('X', 'RANDOM', 4)
 p2 = Player('O', 'RANDOM', 4)
 
+state = input(
+    'Wil je tegen een AI spelen of tegen een persoon? \nDe default waarde bij niks invullen is AIvAI \n[AI/Persoon/AIvAI]==>')
+alt = input('Wil je het in tetris modes spelen? \n[Ja/Nee]==>')
+
 bord = Board(7, 6)
 
-bord.play_game(p1, p2)
+if alt in ['Ja', 'ja', 'J', 'j', 'Y', 'y']:
+    bord.alt = True
+
+if state == 'AI':
+    bord.play_game('human', p1)
+elif state == 'Persoon':
+    bord.play_game('human', 'human')
+else:
+    bord.play_game(p2, p1)

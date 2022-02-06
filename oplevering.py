@@ -196,12 +196,7 @@ class Board:
         clears it and adds a new clean row on the top.
         """
         if self.alt:
-            count = 0
-            for item in self.data[self.height-1]:
-                if item != ' ':
-                    count += 1
-
-            if count == self.width:
+            if ' ' not in self.data[self.height-1]:
                 tetrisPrint()
                 self.data = [[' ']*self.width] + self.data[0:self.height-1]
 
@@ -356,8 +351,9 @@ state = input(
 alt = input('Wil je het in tetris modes spelen? \n[Ja/Nee]==>')
 
 bord = Board(7, 6)
+bord.set_board('0152512542')
 
-if alt in ['Ja', 'ja', 'J', 'j', 'Y', 'y']:
+if alt in ['Ja', 'ja', 'JA', 'J', 'j', 'Y', 'y']:
     bord.alt = True
 
 if state == 'AI':

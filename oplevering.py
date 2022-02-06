@@ -350,7 +350,6 @@ state = input(
 alt = input('Wil je het in tetris modes spelen? \n[Ja/Nee]==>')
 
 bord = Board(7, 6)
-bord.set_board('0152512542')
 
 if alt in ['Ja', 'ja', 'JA', 'J', 'j', 'Y', 'y']:
     bord.alt = True

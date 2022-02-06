@@ -234,7 +234,6 @@ class Board:
                 while not self.allows_move(col):
                     col = int(input('Kolom voor ' + ox + ': '))
             else:
-                hash_dict.clear()
                 # de computerspeler berekent een zet
                 if show_scores:
                     scores = player.scores_for(self)

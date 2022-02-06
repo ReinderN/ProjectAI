@@ -1,1 +1,10 @@
-In deze update is de Player klasse uitgebreid met ... nieuwe functies, namelijk:
+In deze update is de Player klasse uitgebreid met 2 nieuwe functies, namelijk:
+
+Wij hebben een nieuwe manier van denken toegevoegt, we gebruiken namelijk een hashmap.
+Hiermee slaan wij berekende "moves" op in een list die als key de md5 gehaste waarde self.data heeft van klasse Board.
+Als waarde geven we dus de scores, de ox en het aantal resterende ply van deze zet mee.
+Dit scheelt heel veel toekomstig rekenwerk, omdat wij bij elke zet kijken of we deze al eerder hebben gehad, zo ja, doe dan wat we toen hebben gedaan.
+Wij hebben een performance-increase gezien tussen de 400-1200%, dit ligt eraan hoeveel stappen de Player in de toekomst kijkt.
+
+Daarnaast hebben wij tetris geimplementeerd, hiermee wordt de onderste rij weggehaald als deze niet volledig gelijk is aan een string met een spatie.
+Wij spelen dan vervolgens een tetris animatie af om aan te tonen dat er een tetris is geweest.
